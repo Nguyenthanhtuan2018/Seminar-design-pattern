@@ -17,7 +17,7 @@ use App\Validators\CoreValidator;
  *
  * @package namespace App\Http\Controllers;
  */
-class CoresController extends Controller
+abstract class CoresController extends Controller implements CoreControllerInterface
 {
     /**
      * @var CoreRepository
@@ -48,7 +48,7 @@ class CoresController extends Controller
      */
     public function index()
     {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+//        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $cores = $this->repository->all();
 
         if (request()->wantsJson()) {
@@ -70,7 +70,7 @@ class CoresController extends Controller
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function store(CoreCreateRequest $request)
+    public function store(Request $request)
     {
         try {
 
@@ -146,7 +146,7 @@ class CoresController extends Controller
      *
      * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
-    public function update(CoreUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
         try {
 

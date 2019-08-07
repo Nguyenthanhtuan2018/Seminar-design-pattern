@@ -11,7 +11,7 @@ use Prettus\Repository\Traits\TransformableTrait;
  *
  * @package namespace App\Entities;
  */
-class Core extends Model implements Transformable
+abstract class Core extends Model implements Transformable
 {
     use TransformableTrait;
 
@@ -20,6 +20,6 @@ class Core extends Model implements Transformable
      *
      * @var array
      */
-    protected $fillable = [];
+//    protected $fillable = [];
 
 }
