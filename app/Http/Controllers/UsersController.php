@@ -25,7 +25,7 @@ class UsersController extends CoresController
 
     public function getListUser()
     {
-        $test = $this->repository->getListUser();
+        $test = $this->repository->getAll();
         print_r($test);exit;
     }
 }

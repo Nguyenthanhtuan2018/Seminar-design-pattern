@@ -11,5 +11,8 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface CoreRepository extends RepositoryInterface
 {
-    //
+    /**
+     * @return mixed
+     */
+    public function getAll();
 }

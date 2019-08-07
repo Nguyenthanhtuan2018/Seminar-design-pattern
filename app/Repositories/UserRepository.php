@@ -27,6 +27,15 @@ class UserRepository extends CoreRepositoryEloquent
     }
 
     /**
+     * @return mixed|void
+     */
+    public function getAll()
+    {
+        return $this->model->all()->toArray();
+        // TODO: Implement getAll() method.
+    }
+
+    /**
     * Specify Validator class name
     *
     * @return mixed
