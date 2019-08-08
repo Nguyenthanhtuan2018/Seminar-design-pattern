@@ -11,3 +11,6 @@ npm-debug.log
 yarn-error.log
 .idea
 /.idea
+.iws
+workspace.xml
+tasks.xml
