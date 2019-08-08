@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\UserRepository;
+use App\Responses\UserResponse;
 use App\Validators\UserValidator;
 
 /**
@@ -18,9 +19,9 @@ class UsersController extends CoresController
      * @param UserRepository $repository
      * @param UserValidator $validator
      */
-    public function __construct(UserRepository $repository, UserValidator $validator)
+    public function __construct(UserRepository $repository, UserValidator $validator, UserResponse $response)
     {
-        parent::__construct($repository, $validator);
+        parent::__construct($repository, $validator, $response);
     }
 
     public function getListUser()

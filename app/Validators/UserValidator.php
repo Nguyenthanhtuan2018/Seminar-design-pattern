@@ -17,7 +17,11 @@ class UserValidator extends CoreValidator
      * @var array
      */
     protected $rules = [
-        ValidatorInterface::RULE_CREATE => [],
+        ValidatorInterface::RULE_CREATE => [
+            'name'      => 'required',
+            'email'     => 'required|email|unique:users',
+            'password'  => 'required'
+        ],
         ValidatorInterface::RULE_UPDATE => [],
     ];
 }
