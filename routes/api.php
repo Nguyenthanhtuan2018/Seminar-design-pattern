@@ -34,5 +34,6 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'v1'], function() {
     Route::group(['prefix' => 'user'], function(){
         Route::get('get-list-user', 'UsersController@index')->name('user.index');
         Route::get('get-detail-user/{id}', 'UsersController@show')->name('user.show');
+        Route::post('logout', 'UsersController@logout')->name('user.logout');
     });
 });

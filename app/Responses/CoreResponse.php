@@ -2,6 +2,8 @@
 
 namespace App\Responses;
 
+use function response;
+
 class CoreResponse
 {
     public function data($data)
@@ -59,5 +61,14 @@ class CoreResponse
             'message'    => $message,
             'validation' => $error
         ], 403);
+    }
+
+    public function notification($message = null, $success = true)
+    {
+        $message = $message ?: trans('common.request_notification');
+        return response()->json([
+            'success'    => $success,
+            'message'   => $message
+        ], 200);
     }
 }
