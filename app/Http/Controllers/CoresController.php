@@ -60,9 +60,7 @@ abstract class CoresController extends Controller implements CoreControllerInter
 
         if (request()->wantsJson()) {
 
-            return response()->json([
-                'data' => $cores,
-            ]);
+            return $this->responce->data($cores);
         }
 
         return view('cores.index', compact('cores'));
@@ -123,9 +121,7 @@ abstract class CoresController extends Controller implements CoreControllerInter
 
         if (request()->wantsJson()) {
 
-            return response()->json([
-                'data' => $core,
-            ]);
+            return $this->responce->data($core);
         }
 
         return view('cores.show', compact('core'));

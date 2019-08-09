@@ -27,12 +27,6 @@ class UsersController extends CoresController
         parent::__construct($repository, $validator, $response);
     }
 
-    public function getListUser()
-    {
-        $test = $this->repository->getAll();
-        print_r($test);exit;
-    }
-
     /**
      * Login
      *
