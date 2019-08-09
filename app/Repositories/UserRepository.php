@@ -27,7 +27,7 @@ class UserRepository extends CoreRepositoryEloquent
     }
 
     /**
-     * @return mixed|void
+     * @return mixed
      */
     public function getAll()
     {
