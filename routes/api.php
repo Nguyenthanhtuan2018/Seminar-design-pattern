@@ -21,6 +21,7 @@ Route::group(['prefix' => 'v1'], function() {
     Route::group(['prefix' => 'user'], function(){
         Route::post('get-list-user', 'UsersController@getListUser')->name('user.test');
         Route::post('register-user-account', 'UsersController@store')->name('user.store');
+        Route::post('login', 'UsersController@login')->name('user.login');
     });
 
 });
