@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Responses\CoreResponse;
 use Illuminate\Http\Request;
 
+use function method_exists;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\CoreCreateRequest;
@@ -29,15 +31,21 @@ abstract class CoresController extends Controller implements CoreControllerInter
     protected $validator;
 
     /**
+     * @var CoreResponse
+     */
+    protected $responce;
+
+    /**
      * CoresController constructor.
      *
      * @param CoreRepository $repository
      * @param CoreValidator $validator
      */
-    public function __construct(CoreRepository $repository, CoreValidator $validator)
+    public function __construct(CoreRepository $repository, CoreValidator $validator, CoreResponse $responce)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
+        $this->responce   = $responce;
     }
 
     /**
@@ -52,9 +60,7 @@ abstract class CoresController extends Controller implements CoreControllerInter
 
         if (request()->wantsJson()) {
 
-            return response()->json([
-                'data' => $cores,
-            ]);
+            return $this->responce->data($cores);
         }
 
         return view('cores.index', compact('cores'));
@@ -77,23 +83,25 @@ abstract class CoresController extends Controller implements CoreControllerInter
 
             $core = $this->repository->create($request->all());
 
+            if (method_exists($core, 'toArray')) {
+                $core = $core->toArray();
+            }
+
             $response = [
                 'message' => 'Core created.',
-                'data'    => $core->toArray(),
+                'data'    => $core,
             ];
 
             if ($request->wantsJson()) {
 
-                return response()->json($response);
+                return $this->responce->created($core);
             }
 
             return redirect()->back()->with('message', $response['message']);
         } catch (ValidatorException $e) {
             if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
+
+                return $this->responce->validationError($e->getMessageBag());
             }
 
             return redirect()->back()->withErrors($e->getMessageBag())->withInput();
@@ -113,9 +121,7 @@ abstract class CoresController extends Controller implements CoreControllerInter
 
         if (request()->wantsJson()) {
 
-            return response()->json([
-                'data' => $core,
-            ]);
+            return $this->responce->data($core);
         }
 
         return view('cores.show', compact('core'));

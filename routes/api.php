@@ -17,9 +17,23 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+/*
+ * Public
+ */
 Route::group(['prefix' => 'v1'], function() {
     Route::group(['prefix' => 'user'], function(){
-        Route::post('get-list-user', 'UsersController@getListUser')->name('user.test');
+        Route::post('register-user-account', 'UsersController@store')->name('user.store');
+        Route::post('login', 'UsersController@login')->name('user.login');
     });
+});
 
+/*
+ * User
+ */
+Route::group(['middleware' => 'auth:api', 'prefix' => 'v1'], function() {
+    Route::group(['prefix' => 'user'], function(){
+        Route::get('get-list-user', 'UsersController@index')->name('user.index');
+        Route::get('get-detail-user/{id}', 'UsersController@show')->name('user.show');
+        Route::post('logout', 'UsersController@logout')->name('user.logout');
+    });
 });
