@@ -25,6 +25,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(\App\Repositories\CoreRepository::class, \App\Repositories\CoreRepositoryEloquent::class);
 //        $this->app->bind(\App\Repositories\UserRepository::class, \App\Repositories\UserRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\ContactRepository::class, \App\Repositories\ContactRepository::class);
         //:end-bindings:
     }
 }

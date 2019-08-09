@@ -12,22 +12,5 @@ use App\Entities\Core;
  */
 class CoreTransformer extends TransformerAbstract
 {
-    /**
-     * Transform the Core entity.
-     *
-     * @param \App\Entities\Core $model
-     *
-     * @return array
-     */
-    public function transform(Core $model)
-    {
-        return [
-            'id'         => (int) $model->id,
-
-            /* place your other model properties here */
-
-            'created_at' => $model->created_at,
-            'updated_at' => $model->updated_at
-        ];
-    }
+    //
 }

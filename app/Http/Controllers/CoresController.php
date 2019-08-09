@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Criteria\CoreCriteria;
+use App\Criteria\UserCriteria;
 use App\Responses\CoreResponse;
 use Illuminate\Http\Request;
 
-use function method_exists;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\CoreCreateRequest;
@@ -36,16 +37,22 @@ abstract class CoresController extends Controller implements CoreControllerInter
     protected $responce;
 
     /**
+     * @var CoreCriteria
+     */
+    protected $criteria;
+
+    /**
      * CoresController constructor.
      *
      * @param CoreRepository $repository
      * @param CoreValidator $validator
      */
-    public function __construct(CoreRepository $repository, CoreValidator $validator, CoreResponse $responce)
+    public function __construct(CoreRepository $repository, CoreValidator $validator, CoreResponse $responce, CoreCriteria $criteria)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
         $this->responce   = $responce;
+        $this->criteria   = $criteria;
     }
 
     /**
@@ -55,7 +62,7 @@ abstract class CoresController extends Controller implements CoreControllerInter
      */
     public function index()
     {
-//        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
+        $this->repository->pushCriteria($this->criteria);
         $cores = $this->repository->all();
 
         if (request()->wantsJson()) {

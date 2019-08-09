@@ -2,8 +2,8 @@
 
 namespace App\Repositories;
 
-use App\Entities\User;
-use App\Validators\UserValidator;
+use App\Entities\Contact;
+use App\Validators\ContactValidator;
 use Prettus\Repository\Criteria\RequestCriteria;
 
 /**
@@ -11,7 +11,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
  *
  * @package namespace App\Repositories;
  */
-class UserRepository extends CoreRepositoryEloquent
+class ContactRepository extends CoreRepositoryEloquent
 {
     /**
      * Specify Model class name
@@ -20,31 +20,17 @@ class UserRepository extends CoreRepositoryEloquent
      */
     public function model()
     {
-        return User::class;
-    }
-
-    public function getListUser()
-    {
-       return $this->model->all()->toArray();
+        return Contact::class;
     }
 
     /**
+     * Specify Validator class name
+     *
      * @return mixed
      */
-    public function getAll()
-    {
-        return $this->model->all()->toArray();
-        // TODO: Implement getAll() method.
-    }
-
-    /**
-    * Specify Validator class name
-    *
-    * @return mixed
-    */
     public function validator()
     {
-        return UserValidator::class;
+        return ContactValidator::class;
     }
 
 

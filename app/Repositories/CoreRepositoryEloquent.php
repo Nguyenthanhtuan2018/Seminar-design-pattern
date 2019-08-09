@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Contracts\DataTransformer;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use App\Repositories\CoreRepository;
@@ -15,28 +16,6 @@ use App\Validators\CoreValidator;
  */
 abstract class CoreRepositoryEloquent extends BaseRepository implements CoreRepository
 {
-    /**
-     * Specify Model class name
-     *
-     * @return string
-     */
-//    public function model()
-//    {
-//        return Core::class;
-//    }
-
-    /**
-    * Specify Validator class name
-    *
-    * @return mixed
-    */
-//    public function validator()
-//    {
-//
-//        return CoreValidator::class;
-//    }
-
-
     /**
      * Boot up the repository, pushing criteria
      */

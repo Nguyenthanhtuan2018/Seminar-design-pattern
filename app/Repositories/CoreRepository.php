@@ -2,7 +2,9 @@
 
 namespace App\Repositories;
 
+use App\Contracts\DataTransformer;
 use Prettus\Repository\Contracts\RepositoryInterface;
+use Prettus\Repository\Contracts\CriteriaInterface;
 
 /**
  * Interface CoreRepository.

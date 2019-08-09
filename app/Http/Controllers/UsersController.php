@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Common\Messages;
+use App\Criteria\UserCriteria;
 use App\Repositories\UserRepository;
 use App\Responses\UserResponse;
 use App\Validators\UserValidator;
@@ -23,9 +24,9 @@ class UsersController extends CoresController
      * @param UserRepository $repository
      * @param UserValidator $validator
      */
-    public function __construct(UserRepository $repository, UserValidator $validator, UserResponse $response)
+    public function __construct(UserRepository $repository, UserValidator $validator, UserResponse $response, UserCriteria $criteria)
     {
-        parent::__construct($repository, $validator, $response);
+        parent::__construct($repository, $validator, $response, $criteria);
     }
 
     /**
