@@ -176,7 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
-        App\Plugins\ClientRequestProvider::class,
+//        App\Plugins\ClientRequestProvider::class,
     ],
 
     /*

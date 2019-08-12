@@ -2,6 +2,7 @@
 
 namespace App\Criteria;
 
+use App\Plugins\ClientRequestAdapter;
 use Prettus\Repository\Contracts\CriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
@@ -11,6 +12,17 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 abstract class CoreCriteria implements CriteriaInterface
 {
+    protected $clientRequestAdapter;
+
+    public function __construct(ClientRequestAdapter $clientRequestAdapter)
+    {
+        $this->clientRequestAdapter = $clientRequestAdapter;
+        $filters = $this->clientRequestAdapter->getFilter();
+        $this->setFilter($filters);
+        $sorts = $this->clientRequestAdapter->getSort();
+        $this->setSort($sorts);
+    }
+
     /**
      * The Eloquent builder.
      *

@@ -95,7 +95,7 @@ class ClientRequestAdapter
     {
         $sorts = [];
 
-        if ($orderBy = $this->request->input('orderBy')) {
+        if ($orderBy = $this->request->input('sort')) {
             $direction = $this->request->input('ascending') ? 'asc' : 'desc';
             $sorts[$orderBy] = $direction;
         }
