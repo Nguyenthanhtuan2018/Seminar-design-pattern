@@ -26,7 +26,6 @@ class UsersController extends CoresController
      */
     public function __construct(UserRepository $repository, UserValidator $validator, UserResponse $response, UserCriteria $criteria)
     {
-        dd(123);
         parent::__construct($repository, $validator, $response, $criteria);
     }
 
