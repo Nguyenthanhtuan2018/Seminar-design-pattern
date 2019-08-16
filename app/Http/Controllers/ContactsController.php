@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Criteria\ContactCriteria;
+use App\Entities\Contact;
+use App\Responses\ContactResponse;
+use App\Services\Contact\ContactService;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\App;
 use Prettus\Validator\Contracts\ValidatorInterface;
 use Prettus\Validator\Exceptions\ValidatorException;
 use App\Http\Requests\ContactCreateRequest;
@@ -17,7 +22,7 @@ use App\Validators\ContactValidator;
  *
  * @package namespace App\Http\Controllers;
  */
-class ContactsController extends Controller
+class ContactsController extends CoresController
 {
     /**
      * @var ContactRepository
@@ -30,14 +35,26 @@ class ContactsController extends Controller
     protected $validator;
 
     /**
+     * @var
+     */
+
+    private $service;
+
+    /**
      * ContactsController constructor.
      *
      * @param ContactRepository $repository
      * @param ContactValidator $validator
      */
-    public function __construct(ContactRepository $repository, ContactValidator $validator)
+    public function __construct(ContactRepository $repository, ContactValidator $validator, ContactResponse $response, ContactCriteria $criteria, ContactService $service)
     {
-        $this->repository = $repository;
-        $this->validator  = $validator;
+        parent::__construct($repository, $validator, $response, $criteria);
+        $this->service = $service;
+    }
+
+    public function testSingleton()
+    {
+        $result = $this->service->getInstance();
+        print_r($result->name);
     }
 }

@@ -13,6 +13,7 @@ use Prettus\Repository\Criteria\RequestCriteria;
  */
 class ContactRepository extends CoreRepositoryEloquent
 {
+    private $name;
     /**
      * Specify Model class name
      *
@@ -43,4 +44,12 @@ class ContactRepository extends CoreRepositoryEloquent
         $this->pushCriteria(app(RequestCriteria::class));
     }
 
+    /**
+     * @return mixed
+     */
+    public function getAll()
+    {
+        return $this->model->all()->toArray();
+        // TODO: Implement getAll() method.
+    }
 }

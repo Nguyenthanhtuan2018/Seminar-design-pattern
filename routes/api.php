@@ -37,3 +37,9 @@ Route::group(['middleware' => 'auth:api', 'prefix' => 'v1'], function() {
         Route::post('logout', 'UsersController@logout')->name('user.logout');
     });
 });
+
+Route::group(['middleware' => 'auth:api', 'prefix' => 'v1'], function() {
+    Route::group(['prefix' => 'contact'], function(){
+        Route::post('test-singleton', 'ContactsController@testSingleton')->name('contact.testSingleton');
+    });
+});
